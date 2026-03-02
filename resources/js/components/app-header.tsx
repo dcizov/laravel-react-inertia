@@ -76,15 +76,17 @@ export function AppHeader({ breadcrumbs = [] }: Props) {
                     {/* Mobile Menu */}
                     <div className="lg:hidden">
                         <Sheet>
-                            <SheetTrigger asChild>
-                                <Button
-                                    variant="ghost"
-                                    size="icon"
-                                    className="mr-2 h-[34px] w-[34px]"
-                                >
-                                    <Menu className="h-5 w-5" />
-                                </Button>
-                            </SheetTrigger>
+                            <SheetTrigger
+                                render={
+                                    <Button
+                                        variant="ghost"
+                                        size="icon"
+                                        className="mr-2 h-[34px] w-[34px]"
+                                    >
+                                        <Menu className="h-5 w-5" />
+                                    </Button>
+                                }
+                            />
                             <SheetContent
                                 side="left"
                                 className="flex h-full w-64 flex-col items-stretch justify-between bg-sidebar"
@@ -187,10 +189,7 @@ export function AppHeader({ breadcrumbs = [] }: Props) {
                             </Button>
                             <div className="ml-1 hidden gap-1 lg:flex">
                                 {rightNavItems.map((item) => (
-                                    <TooltipProvider
-                                        key={item.title}
-                                        delayDuration={0}
-                                    >
+                                    <TooltipProvider key={item.title} delay={0}>
                                         <Tooltip>
                                             <TooltipTrigger>
                                                 <a
@@ -216,22 +215,24 @@ export function AppHeader({ breadcrumbs = [] }: Props) {
                             </div>
                         </div>
                         <DropdownMenu>
-                            <DropdownMenuTrigger asChild>
-                                <Button
-                                    variant="ghost"
-                                    className="size-10 rounded-full p-1"
-                                >
-                                    <Avatar className="size-8 overflow-hidden rounded-full">
-                                        <AvatarImage
-                                            src={auth.user.avatar}
-                                            alt={auth.user.name}
-                                        />
-                                        <AvatarFallback className="rounded-lg bg-neutral-200 text-black dark:bg-neutral-700 dark:text-white">
-                                            {getInitials(auth.user.name)}
-                                        </AvatarFallback>
-                                    </Avatar>
-                                </Button>
-                            </DropdownMenuTrigger>
+                            <DropdownMenuTrigger
+                                render={
+                                    <Button
+                                        variant="ghost"
+                                        className="size-10 rounded-full p-1"
+                                    >
+                                        <Avatar className="size-8 overflow-hidden rounded-full">
+                                            <AvatarImage
+                                                src={auth.user.avatar}
+                                                alt={auth.user.name}
+                                            />
+                                            <AvatarFallback className="rounded-lg bg-neutral-200 text-black dark:bg-neutral-700 dark:text-white">
+                                                {getInitials(auth.user.name)}
+                                            </AvatarFallback>
+                                        </Avatar>
+                                    </Button>
+                                }
+                            />
                             <DropdownMenuContent className="w-56" align="end">
                                 <UserMenuContent user={auth.user} />
                             </DropdownMenuContent>
